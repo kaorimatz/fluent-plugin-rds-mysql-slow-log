@@ -63,3 +63,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/kaorim
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Acknowledgement
+
+The idea of calling `mysql.rds_rotate_slow_log` for collecting slow log entries is borrowed from [fluent-plugin-rds-slowlog](https://github.com/kenjiskywalker/fluent-plugin-rds-slowlog).
