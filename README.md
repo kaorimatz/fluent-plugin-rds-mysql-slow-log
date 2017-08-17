@@ -32,6 +32,7 @@ Or install it yourself as:
   from_encoding shift_jis
   keep_time_key
   null_empty_string
+  rotate_interval 1
   tag_prefix slow_log
   <server>
     host db1.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com

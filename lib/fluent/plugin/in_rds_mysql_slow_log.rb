@@ -14,6 +14,7 @@ module Fluent
     config_param :from_encoding, :string, default: nil, desc: 'The encoding of sql_text data.'
     config_param :keep_time_key, :bool, default: false, desc: 'Keep the time key in an emitted record.'
     config_param :null_empty_string, :bool, default: false, desc: 'Convert empty strings to null.'
+    config_param :rotate_interval, :time, default: nil, desc: 'The interval in seconds between subsequent rotations of slow_log tables across servers.'
     config_param :tag_prefix, :string, default: nil, desc: 'The prefix of the tag.'
     config_section :server, param_name: :servers, required: true do
       config_param :host, :string, desc: 'The IP address or hostname of the server.'
@@ -80,7 +81,8 @@ module Fluent
     end
 
     def on_timer
-      @servers.each do |tag, server|
+      @servers.each.with_index do |(tag, server), i|
+        sleep @rotate_interval if @rotate_interval && !i.nonzero?
         emit_slow_log(tag, server)
       end
     end
