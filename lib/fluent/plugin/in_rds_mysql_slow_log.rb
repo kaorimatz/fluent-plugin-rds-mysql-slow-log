@@ -9,7 +9,7 @@ module Fluent
     Plugin.register_input('rds_mysql_slow_log', self)
 
     config_param :database_timezone, :string, default: nil, desc: 'The timezone of the database.'
-    config_param :emit_interval, :time, default: 10, desc: 'The interval in seconds to emit records.'
+    config_param :emit_interval, :time, default: 60, desc: 'The interval in seconds to emit records.'
     config_param :encoding, :string, default: nil, desc: 'The encoding of strings in an emitted record.'
     config_param :from_encoding, :string, default: nil, desc: 'The encoding of sql_text data.'
     config_param :keep_time_key, :bool, default: false, desc: 'Keep the time key in an emitted record.'
