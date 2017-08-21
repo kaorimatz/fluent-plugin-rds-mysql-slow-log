@@ -150,8 +150,9 @@ module Fluent
     end
 
     def time_to_microseconds(time)
-      hour, min, sec, usec = time.scanf('%2u:%2u:%2u.%6u')
-      hour * 3_600_000_000 + min * 60_000_000 + sec * 1_000_000 + usec.to_i
+      hour, min, sec, usec = time.scanf('%4d:%2u:%2u.%6u')
+      sign = hour < 0 ? -1 : 1
+      (hour.abs * 3_600_000_000 + min * 60_000_000 + sec * 1_000_000 + usec.to_i) * sign
     end
 
     def process_integer(record)
